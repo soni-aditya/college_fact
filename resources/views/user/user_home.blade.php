@@ -91,7 +91,7 @@
             box-shadow: 0 1px 0 0 #ce93d8 !important
         }
         body{
-            background: #eeeeee !important;
+            background: #fff !important;
         }
     </style>
 @stop
@@ -126,7 +126,27 @@
     <main>
         <div class="cotainer">
             <div class="row">
-                    <div class="row col m8 offset-m2 white s12">
+                    <div class="row col m4 s12 left grey lighten-2">
+                        <div class="col s11">
+                            <br>
+                            <a href="#" class="purple-text">
+                                {{--<img class="circle" src="/college_fact/public/img/logoVector.svg" height="50" width="50">--}}
+                                <div>
+                                    <i class="material-icons large">account_circle</i>
+                                    <h5>{{Auth::user()->email }}</h5>
+                                </div>
+                            </a>
+                            <div class="divider"></div>
+                            <div>
+                                <a class="btn-floating btn-large waves-effect waves-light grey right"><i class="material-icons">brightness_7</i></a>
+
+                                <a class="btn-floating btn-large waves-effect waves-light amber accent-4"><i class="material-icons">chat</i></a>
+                                <a class="btn-floating btn-large waves-effect waves-light red accent-4"><i class="material-icons">child_care</i></a>
+                            </div>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row col m8 right grey lighten-5 s12">
                         {!! Form::open(['url'=>'store',   'method'=>'post' ,'file'=>true]) !!}
                         <div class="row">
                             <div class="input-field col s12">
@@ -146,7 +166,7 @@
                         </div>
                         <div class="row">
                             <div class="col input-field col s12 m2">
-                                <button class="btn-large waves-effect waves-light green right" type="submit" name="action">
+                                <button class="btn waves-effect waves-light green right" type="submit" name="action">
                                     POST
                                 </button>
                             </div>
@@ -154,14 +174,14 @@
                         {!! Form::close() !!}
                     </div>
             </div>
-            <div class="grid grey lighten-3">
+            <div class="grid">
 
                 <div class="row">
                     <div class="col s12 m8 offset-m2">
 
 
                             @foreach($posts as $post)
-                                <div class="card">
+                                <div class="card hoverable">
                                     <div class="grid">
                                         <div class="card-content Black-text row">
                                             <span class="card-title">{{ $post['sender_name']['name'] }}</span>

@@ -24,4 +24,5 @@ Route::get('/', function (){
 Route::get('/home','UserController@index');
 Route::post('/get_initial_details','UserDetailController@setInitialDetails');
 Route::post('/store','PostController@store');
+//Route::get('chat','ChatController@index');
 
