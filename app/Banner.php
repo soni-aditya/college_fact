@@ -18,7 +18,7 @@ class Banner extends Model
     }
     //
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(UserDetail::class);
     }
     public function posts(){
         return $this->hasOne(Post::class);

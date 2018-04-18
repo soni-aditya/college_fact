@@ -11,6 +11,6 @@ class Course extends Model
     ];
     //Foreign key relationships
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(UserDetail::class);
     }
 }

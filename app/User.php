@@ -18,19 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
-        'username',
-        'banner_id',
-        'dob',
-        'address',
-        'institution_id',
-        'user_type_id',
-        'status',
-        'alumini_status',
-        'mobile',
-        'working_status',
-        'year_of_passing',
-        'course_id'
+        'password'
     ];
 
     /**
@@ -43,17 +31,9 @@ class User extends Authenticatable
     ];
 
     //foreign Key Relationships
-    public function banner(){
-        return $this->belongsTo(Banner::class);
-    }
-    public function course(){
-        return $this->belongsTo(Course::class);
-    }
-    public function user_type(){
-        return $this->belongsTo(UserType::class);
-    }
-    public function institution(){
-        return $this->belongsTo(Institution::class);
+
+    public function user_details(){
+        return $this->hasOne(UserDetail::class);
     }
         //
     public function user_career(){

@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/home', function () {
+//    return view('home');
+//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function (){
+    return view('auth.login');
+});
+
+Route::get('/home','UserController@index');
+Route::post('/get_initial_details','UserDetailController@setInitialDetails');
+Route::post('/store','PostController@store');
+
