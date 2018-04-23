@@ -132,7 +132,8 @@
                             <a href="#" class="purple-text">
                                 {{--<img class="circle" src="/college_fact/public/img/logoVector.svg" height="50" width="50">--}}
                                 <div>
-                                    <i class="material-icons large">account_circle</i>
+                                    <img class="circle" src="{{ $banner }}" height="85" width="85">
+                                    {{--<i class="material-icons large">account_circle</i>--}}
                                     <h5>{{Auth::user()->email }}</h5>
                                 </div>
                             </a>
@@ -180,23 +181,29 @@
                     <div class="col s12 m8 offset-m2">
 
 
-                            @foreach($posts as $post)
-                                <div class="card hoverable">
-                                    <div class="grid">
-                                        <div class="card-content Black-text row">
-                                            <span class="card-title">{{ $post['sender_name']['name'] }}</span>
-                                            <small>{{ $post['created_at']  }}</small>
-                                            <div class="divider"></div>
-                                            <br>
-                                            <p>{{$post['content']}}</p>
-                                        </div>
-                                        <div class="card-action row">
-                                            <a href="#" class="right">Like</a>
-                                            <a href="#" class="right">Comment</a>
+                            @if(isset($posts))
+                                @foreach($posts as $post)
+                                    <div class="card hoverable">
+                                        <div class="grid">
+                                            <div class="card-content Black-text row">
+                                                <span class="card-title">{{ $post['sender_name']['name'] }}</span>
+                                                <small>{{ $post['created_at']  }}</small>
+                                                <div class="divider"></div>
+                                                <br>
+                                                <p>{{$post['content']}}</p>
+                                            </div>
+                                            <div class="card-action row">
+                                                <a href="#" class="right">Like</a>
+                                                <a href="#" class="right">Comment</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            @else
+                                <center>No Posts Yet</center>
+                                @endif
+
+
 
                     </div>
                 </div>

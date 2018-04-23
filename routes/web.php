@@ -24,5 +24,9 @@ Route::get('/', function (){
 Route::get('/home','UserController@index');
 Route::post('/get_initial_details','UserDetailController@setInitialDetails');
 Route::post('/store','PostController@store');
-//Route::get('chat','ChatController@index');
 
+
+//Chating
+Route::get('/chat','ChatController@index');
+Route::post('/chat-start','ChatController@startChat');
+Route::post('/chat-create','ChatController@createChat');

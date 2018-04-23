@@ -71,7 +71,7 @@ class PassportController extends Controller
      * Get User Details
      */
     public function getDetails(){
-        $user = Auth::user();
+        $user = (new User())->all();
         return response()->json(['success'=>$user],$this->successStatus);
     }
 }

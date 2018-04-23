@@ -4,7 +4,7 @@
     <title>College Faction</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 

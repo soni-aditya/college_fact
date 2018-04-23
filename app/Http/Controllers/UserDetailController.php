@@ -28,10 +28,10 @@ class UserDetailController extends Controller
         $user_details->address = 'No Address Given';
 
         if($user_details->save()){
-            return view('users.user_home');
+            return redirect('home');
         }
         else{
-            return view('user.get_details');
+            return redirect('get_initial_details');
         }
     }
 //    /**
