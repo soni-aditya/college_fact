@@ -35,6 +35,15 @@
 
                 <ul id="nav-mobile" class="right">
                     <li>Welcome {{ Auth::user()->name }} ! &nbsp;</li>
+                    <li class="green"><a href="home" class="tooltipped" data-position="left" data-tooltip="Go Home!">
+                            <i class="material-icons ">account_balance</i>
+                        </a></li>
+                    <li class="orange darken-4"><a href="events" class="tooltipped" data-position="left" data-tooltip="Events !">
+                            <i class="material-icons ">bubble_chart</i>
+                        </a></li>
+                    <li class="light-blue darken-2"><a href="chat" class="tooltipped" data-position="left" data-tooltip="Talk with everyone!">
+                            <i class="material-icons ">chat</i>
+                        </a></li>
                     <li class="red"><a href="{{ route('logout') }}" class="tooltipped" data-position="left" data-tooltip="Log Yourself Out" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             <i class="material-icons ">power_settings_new</i>

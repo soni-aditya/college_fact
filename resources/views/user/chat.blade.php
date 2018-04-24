@@ -67,26 +67,37 @@
 
 @section('content')
     {{--Nav bar--}}
-    <nav class="purple">
-        <div class="nav-wrapper">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="brand-logo">
+    <header>
+        <nav class="purple navbar-fixed">
+            <div class="nav-wrapper ">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="brand-logo">
                     <img src="/college_fact/public/img/logoVectorWhite.svg" alt="" width="25" height="25">&nbsp;College Faction
                 </span>
 
 
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li>Welcome {{ Auth::user()->name }} ! &nbsp;</li>
-                <li class="red"><a href="{{ route('logout') }}" class="tooltipped" data-position="left" data-tooltip="Log Yourself Out" onclick="event.preventDefault();
+                <ul id="nav-mobile" class="right">
+                    <li>Welcome {{ Auth::user()->name }} ! &nbsp;</li>
+                    <li class="green"><a href="home" class="tooltipped" data-position="left" data-tooltip="Go Home!">
+                            <i class="material-icons ">account_balance</i>
+                        </a></li>
+                    <li class="orange darken-4"><a href="events" class="tooltipped" data-position="left" data-tooltip="Events !">
+                            <i class="material-icons ">bubble_chart</i>
+                        </a></li>
+                    <li class="light-blue darken-2"><a href="chat" class="tooltipped" data-position="left" data-tooltip="Talk with everyone!">
+                            <i class="material-icons ">chat</i>
+                        </a></li>
+                    <li class="red"><a href="{{ route('logout') }}" class="tooltipped" data-position="left" data-tooltip="Log Yourself Out" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <i class="material-icons ">power_settings_new</i>
-                    </a></li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </ul>
-        </div>
-    </nav>
+                            <i class="material-icons ">power_settings_new</i>
+                        </a></li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
     {{--Content--}}
     <div class="container ">
@@ -113,13 +124,21 @@
                 <br>
                 <h6>
                     <img src="/college_fact/public/img/user.jpeg" height="15" width="15" class="circle">
-                    <span id="member-name">Firend's Name</span>
+                    <span id="member-name"></span>
                 </h6>
                 <div class="divider"></div>
                 <div class=" user_chats messages" id="conversation">
                     {{--<div class="row msg">--}}
                     {{--<div class=" col s6 left ">--}}
-                    {{--<h6 class="grey left">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five c</h6>--}}
+                        {{--<h6 class="grey left">--}}
+                            {{--<span>--}}
+                                {{--<strong>Him</strong>--}}
+                                {{--&nbsp;&nbsp;&nbsp;--}}
+                                {{--<small>Date </small>--}}
+                            {{--</span>--}}
+                            {{--<div class="divider black"></div>--}}
+                            {{--<br>--}}
+                            {{--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five c</h6>--}}
                     {{--</div>--}}
                     {{--</div>--}}
                     {{--<div class="row msg">--}}
