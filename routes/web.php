@@ -30,3 +30,6 @@ Route::post('/store','PostController@store');
 Route::get('/chat','ChatController@index');
 Route::post('/chat-start','ChatController@startChat');
 Route::post('/chat-create','ChatController@createChat');
+//Route::get('/chat-temp',function (){
+//    return view('user.chatdemo');
+//});

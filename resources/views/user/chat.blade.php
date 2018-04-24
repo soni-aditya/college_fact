@@ -30,7 +30,7 @@
         .chat-form{
             position: fixed;
             bottom: 0 !important;
-            width: 100% !important;
+            width: 65% !important;
         }
         .message-button{
             width: 50% !important;
@@ -47,6 +47,19 @@
             border-radius: 25px !important;
             padding-right: 5px !important;
             padding-left: 5px !important;
+        }
+        /*.user_chats{*/
+        /*overflow-y: scroll;*/
+        /*overflow-x: none;*/
+        /*width: 100% !important;*/
+        /*height: 100% !important;*/
+        /*}*/
+        .msg{
+            margin-bottom: 5px !important;
+        }
+        h6{
+            border-radius: 50px !important;
+            padding: 15px !important;
         }
     </style>
 @stop
@@ -76,62 +89,62 @@
     </nav>
 
     {{--Content--}}
+    <div class="container ">
+        <div class="row">
+            <div class="col  s4">
+                <br>
 
-    <div class="row">
-        <div class="col s3 friends">
-            <div class="white center">
-                <h5>Members</h5>
+                <div class="collection">
+                    {{--<a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>--}}
+                    @foreach($members as $member)
+                        @if($member->id != (Auth::user())->id)
+                            <a href="#!" class="collection-item member" id="{{$member->id}}" name="{{$member->name}}">
+                                <h5>
+                                    <img src="/college_fact/public/img/user.jpeg" height="15" width="15" class="circle">
+                                    {{ $member->name }}
+                                </h5>
+                            </a>
+                        @endif
+                    @endforeach
+
+                </div>
+            </div>
+            <div class="col s8">
+                <br>
+                <h6>
+                    <img src="/college_fact/public/img/user.jpeg" height="15" width="15" class="circle">
+                    <span id="member-name">Firend's Name</span>
+                </h6>
                 <div class="divider"></div>
-            </div>
-            <div class="col s12">
-                @foreach($members as $member)
-                    @if($member->id != (Auth::user())->id)
-                        <div class="card horizontal hoverable member" id="{{$member->id}}" name="{{$member->name}}">
-                            <div class="card-image">
-                                <img src="/college_fact/public/img/user.jpeg" height="60" width="60" class="circle">
-                            </div>
-
-                            <div class="card-content">
-                                <h5>{{ $member->name }}</h5>
-                            </div>
-                            {{--</div>--}}
+                <div class=" user_chats messages" id="conversation">
+                    {{--<div class="row msg">--}}
+                    {{--<div class=" col s6 left ">--}}
+                    {{--<h6 class="grey left">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five c</h6>--}}
+                    {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row msg">--}}
+                    {{--<div class="col s6 right">--}}
+                    {{--<h6 class=" blue lighten-4 right">HelLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five clo</h6>--}}
+                    {{--</div>--}}
+                    {{--</div>--}}
+                </div>
+                <br><br><br>
+                <div class="chat-form s12 white">
+                    {!! Form::open() !!}
+                    <div class="message-input">
+                        <div class="input-field col s11">
+                            <input id="message" type="text" class="validate" id="message-written">
+                            <label for="message">Write Something..</label>
                         </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        <div class="col s8 chats">
-            <div class="white chat-top s12">
-                <h4 id="member-name"> Username </h4>
-                <div class="divider"></div>
-
-            </div>
-            <br>
-            <div class="messages center s12" id="conversation">
-                {{--No Messages yet--}}
-
-                {{--<div class="user_two row right red lighten-2">--}}
-                    {{--<h5>Aditya &nbsp;</h5>--}}
-                {{--</div>--}}
-                {{--<br><br><br>--}}
-                {{--<div class="user_one row left green lighten-2">--}}
-                    {{--<h5>&nbsp;Aditya</h5>--}}
-                {{--</div>--}}
-            </div>
-            <div class="chat-form s12 white">
-                        {!! Form::open() !!}
-                        <div class="message-input">
-                            <div class="input-field col s11">
-                                <input id="message" type="text" class="validate" id="message-written">
-                                <label for="message">Write Something..</label>
-                            </div>
-                            <div class="input-field col s1">
-                                <button class="btn waves-effect waves-light green" type="button" name="action" id="send">
-                                    send <i class="material-icons right">send</i>
-                                </button>
-                            </div>
+                        <div class="input-field col s1">
+                            <button class="btn waves-effect waves-light green" type="button" name="action" id="send">
+                                send <i class="material-icons right">send</i>
+                            </button>
                         </div>
-                        {!! Form::close() !!}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+
             </div>
         </div>
     </div>
@@ -145,9 +158,6 @@
             var name=null;
             var user_curr=null;
             var conversation_id = null;
-
-
-
 
             /*
             This function gets the previous conversation between user and the friends in circle
@@ -166,32 +176,33 @@
                     if(info['size'] >0){
                         for(var i=0; i< info['size']; i++){
                             if(info[i]['user_from'] === user_curr){
-                                conv = conv + '<div class="user_two row right red lighten-2" class="user-chat">' +
-                                    '<h5>'+info[i]['message']+'&nbsp;</h5>' +
-                                    '</div><br><br><br>';
+                                conv = conv+ '<div class="row msg">' +
+                                    '<div class=" col s6 right ">' +
+                                    '<h6 class="blue lighten-4 right">'+info[i]['message']+'</h6>' +
+                                    '</div>' +
+                                    '</div>';
                             }
                             else{
-                                conv = conv +   '<div class="user_one row left green lighten-2" class="user-chat">' +
-                                    '<h5>&nbsp;'+ info[i]['message']+'</h5>' +
-                                    '</div><br><br><br>';
+                                conv = conv+ '<div class="row msg">' +
+                                    '<div class=" col s6 left ">' +
+                                    '<h6 class="grey left">'+info[i]['message']+'</h6>' +
+                                    '</div>' +
+                                    '</div>';
                             }
                         }
                     }
                     else{
-                        conv = '<strong>No Messages Yet</strong>';
+                        conv = '<br><center><strong>No Messages Yet</strong></center>';
                     }
                     $('#conversation').html(conv);
                 });
             });
 
             $('#send').click(function () {
-               // alert($('input:text').val()+user+user_curr+'  '+conversation_id);
+                // alert($('input:text').val()+user+user_curr+'  '+conversation_id);
                 var msg= $('input:text').val();
                 $.post("/college_fact/public/chat-create",{ user_one:{{(Auth::user())->id}},user_two:user,conv:conversation_id,msg:msg,_token: '{{csrf_token()}}' }, function(data){
                     if(data['success'] === 1){
-
-
-
                         $.post("/college_fact/public/chat-start",{ user_one:{{(Auth::user())->id}},user_two:user,_token: '{{csrf_token()}}' }, function(data){
                             var info = data;
                             user_curr = {{(Auth::user())->id}};
@@ -200,31 +211,29 @@
                             if(info['size'] >0){
                                 for(var i=0; i< info['size']; i++){
                                     if(info[i]['user_from'] === user_curr){
-                                        conv = conv + '<div class="user_two row right red lighten-2" class="user-chat">' +
-                                            '<h5>'+info[i]['message']+'&nbsp;</h5>' +
-                                            '</div><br><br><br>';
+                                        conv = conv+ '<div class="row msg">' +
+                                            '<div class=" col s6 right ">' +
+                                            '<h6 class="blue lighten-4 right">'+info[i]['message']+'</h6>' +
+                                            '</div>' +
+                                            '</div>';
                                     }
                                     else{
-                                        conv = conv +   '<div class="user_one row left green lighten-2" class="user-chat">' +
-                                            '<h5>&nbsp;'+ info[i]['message']+'</h5>' +
-                                            '</div><br><br><br>';
+                                        conv = conv+ '<div class="row msg">' +
+                                            '<div class=" col s6 left ">' +
+                                            '<h6 class="grey left">'+info[i]['message']+'</h6>' +
+                                            '</div>' +
+                                            '</div>';
                                     }
                                 }
                             }
                             else{
-                                conv = '<strong>No Messages Yet</strong>';
+                                conv = '<br><center><strong>No Messages Yet</strong></center>';
                             }
                             $('#conversation').html(conv);
                         });
 
 
                         $('input:text').val('');
-
-
-
-
-
-
 
                     }
                     else{
