@@ -62,7 +62,7 @@
             <div class="col s3 offset-s1 grey lighten-3 make_post">
                 <h5 class="center">Say Something !</h5>
                 <div class="divider"></div>
-                {!! Form::open(['url'=>'store',   'method'=>'post' ,'file'=>true]) !!}
+                {!! Form::open(['url'=>'store','method'=>'post' ,'files'=>true]) !!}
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">edit</i>
@@ -97,6 +97,9 @@
                                         <div class="divider"></div>
                                         <br>
                                         <p>{{$post['content']}}</p>
+                                        <div class="center">
+                                            <img src="{{ $post['banner']['src'] }}" class="center" alt="" width="600" height="350"/>
+                                        </div>
                                     </div>
                                     <div class="card-action row">
                                         <a href="#" class="right">Like</a>

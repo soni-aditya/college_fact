@@ -31,6 +31,7 @@ Route::get('/chat','ChatController@index');
 Route::post('/chat-start','ChatController@startChat');
 Route::post('/chat-create','ChatController@createChat');
 Route::get('/events','EventController@index');
+Route::post('/create-event','EventController@store');
 //Route::get('/chat-temp',function (){
 //    return view('user.chatdemo');
 //});

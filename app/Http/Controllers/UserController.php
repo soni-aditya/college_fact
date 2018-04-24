@@ -27,7 +27,7 @@ class UserController extends Controller
 
 
                 $banner = $this->getBanner();
-//                return $banner;
+//                return $posts;
                 return view('user.user_home',compact('posts','banner'));
             }
         }
@@ -71,6 +71,12 @@ class UserController extends Controller
         $name = $user->find($p->sender_id);
 
         $p['sender_name'] = $name;
+
+        $this->addBanner($p);
+
         return $p;
+    }
+    public function addBanner($post){
+        $post['banner'] = $post->banner;
     }
 }

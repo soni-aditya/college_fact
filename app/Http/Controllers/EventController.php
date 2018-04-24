@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class EventController extends Controller
 {
@@ -35,7 +36,10 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        $request->banner_id->store('logos');
+        $request = $request->all();
+
+
     }
 
     /**
@@ -46,7 +50,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        //C:\fakepath\HD-Wallpapers-C76_Mhc5Pw6.jpg
     }
 
     /**
