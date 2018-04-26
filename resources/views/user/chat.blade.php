@@ -104,9 +104,12 @@
         <div class="row">
             <div class="col  s4">
                 <br>
-
                 <div class="collection">
-                    {{--<a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>--}}
+                    <a href="#!" class="collection-item center grey lighten-2 black-text" id="group-chat">
+                        <h5>Get Together</h5>
+                    </a>
+                </div>
+                <div class="collection">
                     @foreach($members as $member)
                         @if($member->id != (Auth::user())->id)
                             <a href="#!" class="collection-item member" id="{{$member->id}}" name="{{$member->name}}">
@@ -178,6 +181,8 @@
             var user_curr=null;
             var conversation_id = null;
 
+            var current_chat = null;
+
             /*
             This function gets the previous conversation between user and the friends in circle
              */
@@ -185,8 +190,10 @@
                 user = $(this).attr('id');
                 name = $(this).attr('name');
 
+                current_chat = user;
 
                 $('#member-name').text(name);
+
                 $.post("/college_fact/public/chat-start",{ user_one:{{(Auth::user())->id}},user_two:user,_token: '{{csrf_token()}}' }, function(data){
                     var info = data;
                     user_curr = {{(Auth::user())->id}};
@@ -214,8 +221,11 @@
                         conv = '<br><center><strong>No Messages Yet</strong></center>';
                     }
                     $('#conversation').html(conv);
+                    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
                 });
             });
+
+
 
             $('#send').click(function () {
                 // alert($('input:text').val()+user+user_curr+'  '+conversation_id);
@@ -249,6 +259,8 @@
                                 conv = '<br><center><strong>No Messages Yet</strong></center>';
                             }
                             $('#conversation').html(conv);
+
+                            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
                         });
 
 
@@ -261,10 +273,60 @@
                 });
             });
 
-            // setInterval(function(){
-            //     //get ajax call
-            //     // console.log('New Call');
-            // }, 2000);
+
+
+
+
+
+            
+            $('#group-chat').click(function () {
+
+            });
+
+
+
+
+
+            setInterval(function(){
+                //get ajax call
+                // console.log('New Call');
+                if(current_chat === null)
+                {
+
+                }
+                else
+                {
+                    $.post("/college_fact/public/chat-start",{ user_one:{{(Auth::user())->id}},user_two:current_chat,_token: '{{csrf_token()}}' }, function(data){
+                        var info = data;
+                        user_curr = {{(Auth::user())->id}};
+                        var conv = '';
+                        conversation_id = data['conv_id'];
+                        if(info['size'] >0){
+                            for(var i=0; i< info['size']; i++){
+                                if(info[i]['user_from'] === user_curr){
+                                    conv = conv+ '<div class="row msg">' +
+                                        '<div class=" col s6 right ">' +
+                                        '<h6 class="blue lighten-4 right">'+info[i]['message']+'</h6>' +
+                                        '</div>' +
+                                        '</div>';
+                                }
+                                else{
+                                    conv = conv+ '<div class="row msg">' +
+                                        '<div class=" col s6 left ">' +
+                                        '<h6 class="grey left">'+info[i]['message']+'</h6>' +
+                                        '</div>' +
+                                        '</div>';
+                                }
+                            }
+                        }
+                        else{
+                            conv = '<br><center><strong>No Messages Yet</strong></center>';
+                        }
+                        $('#conversation').html(conv);
+                        $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                    });
+                }
+            }, 2000);
         });
     </script>
 @stop
