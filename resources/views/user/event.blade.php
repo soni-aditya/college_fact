@@ -67,10 +67,10 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix">edit</i>
                         <textarea id="content" name="content" class="materialize-textarea"></textarea>
-                        <label for="content">Create an Event</label>
+                        <label for="content">Describe about it</label>
                     </div>
                     <div class="input-field col s12 right">
-                        <span for="file-up" class="grey-text lighten-3">Upload an Image:</span>
+                        <span for="file-up" class="grey-text lighten-3">Upload a Poster:</span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         {{Form::file('banner_id',['id'=>'file-up'])}}
                     </div>
@@ -84,32 +84,65 @@
                 </div>
                 {!! Form::close() !!}
             </div>
-            <div class="col s7">
+            <div class="col s3 offset-s1">
                 <div class="card hoverable">
 
-                    @if(isset($posts))
-                        @foreach($posts as $post)
-                            <div class="card hoverable">
-                                <div class="grid">
-                                    <div class="card-content Black-text row">
-                                        <span class="card-title">{{ $post['sender_name']['name'] }}</span>
-                                        <small>{{ $post['created_at']  }}</small>
-                                        <div class="divider"></div>
-                                        <br>
-                                        <p>{{$post['content']}}</p>
-                                    </div>
-                                    <div class="card-action row">
-                                        <a href="#" class="right">Like</a>
-                                        <a href="#" class="right">Comment</a>
-                                    </div>
-                                </div>
+                    <div class="card hoverable">
+                        <div class="grid">
+                            <div class="card-content Black-text row">
+                                <span class="card-title">Event Title</span>
+                                <small>5 hours ago</small>
+                                <div class="divider"></div>
+                                <br>
+                                <p>This is to inform that your session will be ended soon.</p>
                             </div>
-                        @endforeach
-                    @else
-                        <center>No Posts Yet</center>
-                    @endif
+                            <div class="card-action row">
+                                <a href="#" class="right">Going</a>
+                                <a href="#" class="right">Not Interested</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{--@if(isset($posts))--}}
+                        {{--@foreach($posts as $post)--}}
+                            {{--<div class="card hoverable">--}}
+                                {{--<div class="grid">--}}
+                                    {{--<div class="card-content Black-text row">--}}
+                                        {{--<span class="card-title">{{ $post['sender_name']['name'] }}</span>--}}
+                                        {{--<small>{{ $post['created_at']  }}</small>--}}
+                                        {{--<div class="divider"></div>--}}
+                                        {{--<br>--}}
+                                        {{--<p>{{$post['content']}}</p>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="card-action row">--}}
+                                        {{--<a href="#" class="right">Like</a>--}}
+                                        {{--<a href="#" class="right">Comment</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--@endforeach--}}
+                    {{--@else--}}
+                        {{--<center>No Posts Yet</center>--}}
+                    {{--@endif--}}
                 </div>
             </div>
+            <div class="col s3">
+                <div class="card hoverable">
+
+                    <div class="card hoverable">
+                        <div class="grid">
+                            <div class="card-content Black-text row">
+                                <span class="card-title">Event Title</span>
+                                <small>5 hours ago</small>
+                                <div class="divider"></div>
+                                <br>
+                                <p>This is to inform that your session will be ended soon.</p>
+                            </div>
+                            <div class="card-action row">
+                                <a href="#" class="right">Going</a>
+                                <a href="#" class="right">Not Interested</a>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
 @stop

@@ -63,7 +63,7 @@
                             <div class="row">
                                     <div class="input-field col s12">
                                         <div><label>Choose an Institution</label></div>
-                                        {{Form::select('institute', ['Institute 1','Institute 2'])}}
+                                        {{Form::select('institute', ['Institute 1','GKV Haridwar','IIT Roorkee'])}}
                                 </div>
                             </div>
                             <div class="row">
